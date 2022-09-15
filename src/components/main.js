@@ -1,21 +1,27 @@
 import styled from "styled-components";
 import logo from "../media/logo-driven-music-store-transparent.png";
 import pagamento from "../media/formas-pagamento.png";
+import {useState} from 'react'
+import MenuRender from "./dynamic components/menuRender";
 
-export default function Main () {
+export default function Main ({token}) {
+
+    const [showMenu, setShowMenu] = useState(false)
+
+    console.log(showMenu)
 
     return (
     <>
         <Header>
             <Left>
-                <ion-icon name="menu-outline"/>
+                <MenuRender showMenu={showMenu} setShowMenu={setShowMenu}/>
+                <ion-icon name="menu-outline" onClick={()=>showMenu=(!showMenu)}/>
             </Left>
             <Right>
                 <input placeholder="Pesquisar" />
                 <div className="pesquisar">
                     <ion-icon name="search-outline"/>
                 </div>
-                <p>Olá, Fulano</p>
                 <ion-icon name="cart-outline"/>
             </Right>
         </Header>

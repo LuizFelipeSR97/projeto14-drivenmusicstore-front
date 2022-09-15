@@ -3,7 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../media/logo-driven-music-store-transparent.png";
 import axios from 'axios'
 
-export default function SignIn ({token}) {
+export default function SignIn ({token, setToken}) {
+
+    console.log(`O token é: ${token}`)
 
     const navigate = useNavigate();
 
@@ -15,13 +17,13 @@ export default function SignIn ({token}) {
         
         axios.post("http://localhost:5000/sessions", inputUser).then(answer => {
 
-        token = answer.data;
+        setToken(answer.data);
 
         navigate("/");
 
-        console.log(token);
-
         }).catch(err => {
+
+            console.error(err)
 
             if (err.response.status===401){
                 alert("Usuário e/ou senha inválidos. Tente novamente.")

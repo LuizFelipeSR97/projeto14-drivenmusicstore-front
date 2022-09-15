@@ -8,15 +8,15 @@ import Main from './main';
 
 export default function Site () {
 
-    let token = "";
+    const [token, setToken] = React.useState("");
     
     return (
 
     <Page>
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Main token/>} />
-                <Route path="/signin" element={<SignIn token/>} />
+                <Route path="/" element={<Main token={token}/>} />
+                <Route path="/signin" element={<SignIn token={token} setToken={setToken}/>} />
                 <Route path="/signup" element={<SignUp/>} />
             </Routes>
         </BrowserRouter>
