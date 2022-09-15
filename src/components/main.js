@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import logo from "../media/logo-driven-music-store-transparent.png"
+import logo from "../media/logo-driven-music-store-transparent.png";
+import pagamento from "../media/formas-pagamento.png";
 
 export default function Main () {
 
@@ -19,33 +20,38 @@ export default function Main () {
             </Right>
         </Header>
         <Conteudo>
-        <img src={logo} />
-            CONTEUDO
+        <img src={logo} alt=""/>
             <Categorias>
-                <p>Instrumentos</p>
-                <p>Acessórios</p>
-                <p>Discos</p>
-                <p>Aulas</p>
+                <p>INSTRUMENTOS</p>
+                <div className="divisao" />
+                <p>ACESSÓRIOS</p>
+                <div className="divisao" />
+                <p>DISCOS</p>
+                <div className="divisao" />
+                <p>AULAS</p>
             </Categorias>
         </Conteudo>
         <Footer>
             <Secao>
-                <p>QUEM SOMOS</p>
-                <p>QUEM SOMOS</p>
-                <p>QUEM SOMOS</p>
-                <p>QUEM SOMOS</p>
+                <h1>CONTATOS</h1>
+                <h2>TELEFONE:</h2>
+                <h3>(99) 3003-4004</h3>
+                <h3>(99) 3003-5005</h3>
+                <h2>WHATSAPP:</h2>
+                <h3>(99) 99999-9999</h3>
+                <h2>E-MAIL:</h2>
+                <h3>vendas@drivenmusicstore.com</h3>
             </Secao>
             <Secao>
-                <p>QUEM SOMOS</p>
-                <p>QUEM SOMOS</p>
-                <p>QUEM SOMOS</p>
-                <p>QUEM SOMOS</p>
+                <h1>LOJA</h1>
+                <h3>MINHA CONTA</h3>
+                <h3>MEUS PEDIDOS</h3>
+                <h3>SOBRE A LOJA</h3>
+                <h3>TROCAS E DEVOLUÇÕES</h3>
             </Secao>
             <Secao>
-                <p>QUEM SOMOS</p>
-                <p>QUEM SOMOS</p>
-                <p>QUEM SOMOS</p>
-                <p>QUEM SOMOS</p>
+                <h1>FORMAS DE PAGAMENTO</h1>
+                <img src={pagamento} alt=""/>
             </Secao>
         </Footer>
     </>   
@@ -76,6 +82,7 @@ const Conteudo = styled.div`
     img{
         height: 200px;
         width: 500px;
+        margin: 40px 0;
     }
 `
 
@@ -83,7 +90,23 @@ const Categorias = styled.div`
     background-color: #d61b69;
     margin: 10px;
     color: #FFFFFF;
-    font-size: 17px;
+    font-size: 25px;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .divisao{
+        background-color: #FFFFFF;
+        width: 2px;
+        height: 60%;
+        margin: 0 20px;
+    }
+
+    p{
+        cursor: pointer;
+    }
 `
 
 const Footer = styled.div`
@@ -94,6 +117,8 @@ const Footer = styled.div`
     color: #FFFFFF;
     width: 100%;
     height: 100px;
+    padding-right: 20px;
+    padding-left: 20px;
 `
 
 const Secao = styled.div`
@@ -105,6 +130,11 @@ const Secao = styled.div`
     color: #FFFFFF;
     width: 30%;
     height: 100px;
+
+    img{
+        height: 150px;
+        width: 150px;
+    }
 `
 
 const Left = styled.div`

@@ -7,17 +7,20 @@ import SignUp from './signup';
 import Main from './main';
 
 export default function Site () {
+
+    let token = "";
     
     return (
+
     <Page>
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Main/>} />
-                <Route path="/signin" element={<SignIn/>} />
+                <Route path="/" element={<Main token/>} />
+                <Route path="/signin" element={<SignIn token/>} />
                 <Route path="/signup" element={<SignUp/>} />
             </Routes>
         </BrowserRouter>
-    </Page>   
+    </Page>
     )
 }
 

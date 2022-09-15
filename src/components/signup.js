@@ -1,18 +1,48 @@
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../media/logo-driven-music-store-transparent.png"
+import logo from "../media/logo-driven-music-store-transparent.png";
+import axios from 'axios';
+import React from 'react';
 
-export default function SignIn () {
+export default function SignUp () {
+
+    const navigate = useNavigate();
+
+    function enviarFormulario(e){
+
+        e.preventDefault();
+
+        if (e.target.password.value!==e.target.passwordVerification.value){
+            alert ("A senha digitada e a confirmação são diferentes. Digite novamente.");
+            e.target.passwordVerification.value="";
+            return
+        }
+
+        const user = {name: e.target.name.value, email: e.target.email.value, password: e.target.password.value};
+
+        axios.post("http://localhost:5000/users", user).then(() => {
+            navigate("/signin");
+            }).catch(err => {
+                if (err.response.status===409){
+                    alert("Esse e-mail já está em uso. Crie uma nova conta ou faça o login com o e-mail cadastrado.")
+                    return
+                }
+                console.error(err);
+                alert("Erro ao fazer cadastro. Consulte os logs.")
+            })
+    }
 
     return (
     <Conteudo>
-        <img src={logo}/>
-        <Formulario>
-            <input placeholder="Nome" name="nome"/>
-            <input placeholder="E-mail" name="email"/>
-            <input placeholder="Senha" name="senha"/>
-            <input placeholder="Confirme a senha" name="confirmacao-senha"/>
-            <Botao>Cadastrar</Botao>
+        <img src={logo} alt=""/>
+        <Formulario onSubmit={enviarFormulario}>
+            <input placeholder="Nome" type="text" name="name" required/>
+            <input placeholder="E-mail" type="email" name="email" required/>
+            <input placeholder="Senha" type="password" name="password" required/>
+            <input placeholder="Confirme a senha" type="password" name="passwordVerification" required/>
+            <Botao>
+                Entrar
+            </Botao>
         </Formulario>
         <Link to={"/signin"}><p>Já tem uma conta? Faça o login agora!</p></Link>
     </Conteudo>   
@@ -45,7 +75,7 @@ const Conteudo = styled.div`
     }
 `
 
-const Formulario = styled.div`
+const Formulario = styled.form`
     background-color: #blue;
     display: flex;
     flex-direction: column;
@@ -69,9 +99,9 @@ const Formulario = styled.div`
     }
 `
 
-const Botao = styled.div`
-    height: 30px;
-    width: 150px;
+const Botao = styled.button`
+    height: 40px;
+    width: 200px;
     margin: 10px 0;
     background-color: #F8428F;
     color: white;
