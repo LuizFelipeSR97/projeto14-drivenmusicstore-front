@@ -7,26 +7,29 @@ import SignUp from './signup';
 import Main from './main';
 
 export default function Site () {
+
+    let token = "";
     
     return (
+
     <Page>
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Main/>} />
-                <Route path="/signin" element={<SignIn/>} />
+                <Route path="/" element={<Main token/>} />
+                <Route path="/signin" element={<SignIn token/>} />
                 <Route path="/signup" element={<SignUp/>} />
             </Routes>
         </BrowserRouter>
-    </Page>   
+    </Page>
     )
 }
 
 const Page = styled.div`
-    background-color: #8C11BE;
-    height: 100vh;
-    width: 100vw;
+    background-color: #EBECF0;
+    height: 100%;
+    width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     font-family: 'Raleway', sans-serif;
 `
