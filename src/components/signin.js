@@ -1,11 +1,15 @@
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../media/logo-driven-music-store-transparent.png";
+import {useContext} from 'react'
 import axios from 'axios'
+import UserContext from '../contexts/UserContext';
 
-export default function SignIn ({token}) {
+export default function SignIn () {
 
     const navigate = useNavigate();
+
+    const {user, setUser} = useContext(UserContext)
 
     function enviarFormulario(e){
 
@@ -15,13 +19,17 @@ export default function SignIn ({token}) {
         
         axios.post("http://localhost:5000/sessions", inputUser).then(answer => {
 
-        token = answer.data;
+        localStorage.setItem("token", answer.data.token)
+
+        setUser({id: answer.data.id, name: answer.data.name, email: answer.data.email})
+
+        console.log(user)
 
         navigate("/");
 
-        console.log(token);
-
         }).catch(err => {
+
+            console.error(err)
 
             if (err.response.status===401){
                 alert("Usuário e/ou senha inválidos. Tente novamente.")
