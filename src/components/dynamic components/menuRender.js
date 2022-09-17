@@ -55,7 +55,7 @@ export default function MenuRender ({showMenu, setShowMenu}) {
         <Menu>
             <ion-icon name="menu-outline" onClick={()=>setShowMenu(!showMenu)}/>
             <MenuBar>
-                <h1>Olá, Fulano</h1>
+                <h1>Olá, {user.name}</h1>
                 <h2>Minha conta</h2>
                 <h2>Meus pedidos</h2>
                 <h3 onClick={endSession}>Finalizar sessão</h3>
@@ -87,7 +87,7 @@ const MenuBar = styled.div `
     flex-direction: column;
     box-sizing: border-box;
     padding: 15px;
-    background-color: #FFFFFF;
+    background-color: #ebecf0;
     position: fixed;
     top: 50px;
     width: 180px;
