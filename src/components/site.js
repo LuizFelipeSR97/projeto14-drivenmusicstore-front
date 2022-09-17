@@ -11,6 +11,12 @@ export default function Site () {
 
     const [user,setUser] = useState(null)
     
+    if (localStorage.getItem("userId")===null || localStorage.getItem("userName")===null || localStorage.getItem("userEmail")===null){
+        localStorage.setItem("userId","");
+        localStorage.setItem("userName","");
+        localStorage.setItem("userEmail","");
+    }
+    
     return (
 
     <Page>
