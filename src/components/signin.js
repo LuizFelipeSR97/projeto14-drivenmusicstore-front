@@ -1,13 +1,15 @@
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../media/logo-driven-music-store-transparent.png";
+import {useContext} from 'react'
 import axios from 'axios'
+import UserContext from '../contexts/UserContext';
 
-export default function SignIn ({token, setToken}) {
-
-    console.log(`O token é: ${token}`)
+export default function SignIn () {
 
     const navigate = useNavigate();
+
+    const {user, setUser} = useContext(UserContext)
 
     function enviarFormulario(e){
 
@@ -17,7 +19,11 @@ export default function SignIn ({token, setToken}) {
         
         axios.post("http://localhost:5000/sessions", inputUser).then(answer => {
 
-        setToken(answer.data);
+        localStorage.setItem("token", answer.data.token)
+
+        setUser({id: answer.data.id, name: answer.data.name, email: answer.data.email})
+
+        console.log(user)
 
         navigate("/");
 

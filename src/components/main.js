@@ -1,21 +1,24 @@
 import styled from "styled-components";
 import logo from "../media/logo-driven-music-store-transparent.png";
 import pagamento from "../media/formas-pagamento.png";
-import {useState} from 'react'
+import {useContext, useState} from 'react'
 import MenuRender from "./dynamic components/menuRender";
+import UserContext from '../contexts/UserContext';
 
-export default function Main ({token}) {
+export default function Main () {
 
     const [showMenu, setShowMenu] = useState(false)
 
-    console.log(showMenu)
+    const {user, setUser} = useContext(UserContext)
+
+    console.log(`O token é: ${localStorage.getItem("token")}`)
+    console.log(user)
 
     return (
     <>
         <Header>
             <Left>
                 <MenuRender showMenu={showMenu} setShowMenu={setShowMenu}/>
-                <ion-icon name="menu-outline" onClick={()=>showMenu=(!showMenu)}/>
             </Left>
             <Right>
                 <input placeholder="Pesquisar" />

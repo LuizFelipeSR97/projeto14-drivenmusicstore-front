@@ -1,42 +1,38 @@
 import styled from "styled-components"
 import axios from 'axios'
-import {useNavigate} from 'react-router-dom'
-
-const token="d967786c-7963-419a-b3eb-2f7c598f9095"
+import {Link, useNavigate} from 'react-router-dom'
+import {useContext} from 'react'
+import UserContext from '../../contexts/UserContext';
 
 export default function MenuRender ({showMenu, setShowMenu}) {
 
     const navigate = useNavigate();
 
-    function endSession(){
+    const {user, setUser} = useContext(UserContext)
 
-        alert("sessao encerrada");
+    async function endSession(){
 
-        setShowMenu(false)
+        const token = localStorage.getItem("token")
+        const config = {headers: {"Authorization": `Bearer ${token}`}}
 
-        /* const config = {headers: 
-        {
-            authorization: "d967786c-7963-419a-b3eb-2f7c598f9095"
-        }}
+        await axios.delete("http://localhost:5000/sessions", config).then(answer => {
 
-        axios.delete("http://localhost:5000/sessions", config).then(answer => {
+        localStorage.setItem("token","")
 
-        setShowMenu(false)
+        setUser({})
+
+        console.log(user)
 
         navigate("/");
 
+        window.location.reload(false);
+
         }).catch(err => {
 
-            console.error(err)
-
-            if (err.response.status===401){
-                alert("Usuário e/ou senha inválidos. Tente novamente.")
-                return
-            }
             console.error(err);
-            alert("Erro ao fazer login! Consulte os logs.")
+            alert("Erro ao se deslogar! Consulte os logs.")
             return
-        }) */
+        })
     }
 
     if (!showMenu){
@@ -48,6 +44,14 @@ export default function MenuRender ({showMenu, setShowMenu}) {
     }
 
     return (
+        (user===null || user==={})?
+        <Menu>
+            <ion-icon name="menu-outline" onClick={()=>setShowMenu(!showMenu)}/>
+            <MenuBar>
+                <Link to={"/signin"}><h4>Fazer login</h4></Link>
+            </MenuBar>
+        </Menu>
+        :
         <Menu>
             <ion-icon name="menu-outline" onClick={()=>setShowMenu(!showMenu)}/>
             <MenuBar>
@@ -106,6 +110,22 @@ const MenuBar = styled.div `
         margin-top: 50px;
         font-weight: 600;
         color: #d61b69;
+        cursor: pointer;
+    }
+
+    h4{
+        margin-top: 90px;
+        margin-left: 20px;
+        font-weight: 600;
+        font-size: 18px;
+        color: #d61b69;
+        cursor: pointer;
+    }
+
+    a:-webkit-any-link {
+        text-decoration: none;
+        color: #C42673;
+        font-weight: 700;
         cursor: pointer;
     }
 `

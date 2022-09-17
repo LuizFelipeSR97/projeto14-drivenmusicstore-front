@@ -1,6 +1,7 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import styled from "styled-components";
-import React from 'react'
+import {useState} from 'react'
+import UserContext from '../contexts/UserContext';
 
 import SignIn from './signin';
 import SignUp from './signup';
@@ -8,18 +9,20 @@ import Main from './main';
 
 export default function Site () {
 
-    const [token, setToken] = React.useState("");
+    const [user,setUser] = useState(null)
     
     return (
 
     <Page>
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Main token={token}/>} />
-                <Route path="/signin" element={<SignIn token={token} setToken={setToken}/>} />
-                <Route path="/signup" element={<SignUp/>} />
-            </Routes>
-        </BrowserRouter>
+        <UserContext.Provider value={{ user, setUser }}>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Main/>} />
+                    <Route path="/signin" element={<SignIn/>} />
+                    <Route path="/signup" element={<SignUp/>} />
+                </Routes>
+            </BrowserRouter>
+        </UserContext.Provider>
     </Page>
     )
 }
