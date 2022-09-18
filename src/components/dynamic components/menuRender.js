@@ -1,14 +1,10 @@
 import styled from "styled-components"
 import axios from 'axios'
 import {Link, useNavigate} from 'react-router-dom'
-import {useContext} from 'react'
-import UserContext from '../../contexts/UserContext';
 
 export default function MenuRender ({showMenu, setShowMenu}) {
 
     const navigate = useNavigate();
-
-    const {user, setUser} = useContext(UserContext)
 
     async function endSession(){
 
@@ -17,11 +13,10 @@ export default function MenuRender ({showMenu, setShowMenu}) {
 
         await axios.delete("http://localhost:5000/sessions", config).then(answer => {
 
-        localStorage.setItem("token","")
-
-        setUser({})
-
-        console.log(user)
+        localStorage.setItem("token","");
+        localStorage.setItem("userId","");
+        localStorage.setItem("userName","");
+        localStorage.setItem("userEmail","");
 
         navigate("/");
 
@@ -44,7 +39,7 @@ export default function MenuRender ({showMenu, setShowMenu}) {
     }
 
     return (
-        (user===null || user==={})?
+        (localStorage.getItem("token")==="")?
         <Menu>
             <ion-icon name="menu-outline" onClick={()=>setShowMenu(!showMenu)}/>
             <MenuBar>
@@ -55,7 +50,7 @@ export default function MenuRender ({showMenu, setShowMenu}) {
         <Menu>
             <ion-icon name="menu-outline" onClick={()=>setShowMenu(!showMenu)}/>
             <MenuBar>
-                <h1>Olá, {user.name}</h1>
+                <h1>Olá, {localStorage.getItem("userName")}</h1>
                 <h2>Minha conta</h2>
                 <h2>Meus pedidos</h2>
                 <h3 onClick={endSession}>Finalizar sessão</h3>

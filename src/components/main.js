@@ -1,20 +1,13 @@
 import styled from "styled-components";
 import logo from "../media/logo-driven-music-store-transparent.png";
 import pagamento from "../media/formas-pagamento.png";
-import {useContext, useState} from 'react'
+import {useState} from 'react'
 import MenuRender from "./dynamic components/menuRender";
-import UserContext from '../contexts/UserContext';
 import ListaDeProdutos from "./dynamic components/productsMainPage";
 
 export default function Main () {
 
     const [showMenu, setShowMenu] = useState(false)
-
-    const {user, setUser} = useContext(UserContext)
-
-    console.log(`O token é: ${localStorage.getItem("token")}`)
-
-    console.log(user)
 
     return (
     <FullPage>

@@ -9,8 +9,6 @@ export default function SignIn () {
 
     const navigate = useNavigate();
 
-    const {user, setUser} = useContext(UserContext)
-
     function enviarFormulario(e){
 
         e.preventDefault();
@@ -20,10 +18,9 @@ export default function SignIn () {
         axios.post("http://localhost:5000/sessions", inputUser).then(answer => {
 
         localStorage.setItem("token", answer.data.token)
-
-        setUser({id: answer.data.id, name: answer.data.name, email: answer.data.email})
-
-        console.log(user)
+        localStorage.setItem("userId", answer.data.id)
+        localStorage.setItem("userName", answer.data.name)
+        localStorage.setItem("userEmail", answer.data.email)
 
         navigate("/");
 
