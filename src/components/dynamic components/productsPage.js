@@ -21,7 +21,7 @@ export default function ListaDeProdutosCompleta({params}){
 
     useEffect(() => {
 
-        axios.get(`http://localhost:5000/products`).then( answer => {
+        axios.get(`https://back-projeto-drivenmusicstore.herokuapp.com/products`).then( answer => {
 
             if (params.type==="instrumentos"){
                 type = "instrument"
