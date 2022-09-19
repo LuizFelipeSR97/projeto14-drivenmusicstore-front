@@ -12,18 +12,6 @@ export default function Products(){
     const [showMenu, setShowMenu] = useState(false);
     const params = useParams();
 
-    function atualizarPagina() {
-        const reloadCount = sessionStorage.getItem('reloadCount');
-        if(reloadCount < 2) {
-          sessionStorage.setItem('reloadCount', String(reloadCount + 1));
-          window.location.reload();
-        } else {
-          sessionStorage.removeItem('reloadCount');
-        }
-    }
-
-    atualizarPagina()
-
     return (
         <FullPage>
             <Header>
