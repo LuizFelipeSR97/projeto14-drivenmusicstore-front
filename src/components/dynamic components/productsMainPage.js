@@ -1,27 +1,50 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-
-const exListaDeProdutos = [{type: "instruments", name: "Violao"},{type: "instruments", name: "Guitarra"},{type: "instruments", name: "Bateria"},{type: "instruments", name: "Saxofone"},{type: "instruments", name: "Gaita"},{type: "instruments", name: "Pandeiro"},{type: "instruments", name: "Cavaco"},{type: "instruments", name: "Baixo"},{type: "instruments", name: "Banjo"},{type: "instruments", name: "Flauta"}]
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function ListaDeProdutos(){
 
-    const array = [...exListaDeProdutos]
+    useEffect(() => {
+
+        axios.get(`https://back-projeto-drivenmusicstore.herokuapp.com/products`).then( answer => {
+
+            if (params.type==="instrumentos"){
+                type = "instrument"
+            } else if (params.type==="acessorios"){
+                type = "accessory"
+            } else if (params.type==="discos"){
+                type = "disc"
+            } else if (params.type==="aulas"){
+                type = "class"
+            } 
+            
+            setLista(answer.data.filter(p=>p.type===type))
+            setLista(lista.sort(() => Math.random() - 0.5))
+
+        }).catch(err => {
+
+            console.error(err)
+            alert("Erro ao renderizar produtos! Consulte os logs.")
+            return
+        })
+
+    },[]);
     
-    const i=1;
-    const j=2;
-    const k=3;  
+    const i=0;
+    const j=1;
+    const k=2;
 
     return (
         <Lista>
             <Produto>
-                {array[i].name}
+                {lista[i].name}
             </Produto>
             <Produto>
-                {array[j].name}
+                {lista[j].name}
             </Produto>
             <Produto>
-                {array[k].name}
+                {lista[k].name}
             </Produto>
             <Link to="/products?type=discos"><Botao>
                 Ver mais
