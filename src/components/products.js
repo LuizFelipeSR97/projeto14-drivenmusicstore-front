@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import MenuRender from "./dynamic components/menuRender"
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import {Link, useParams} from "react-router-dom"
 import logoAlternativo from '../media/logo-driven-music-store-transparent-alternative.png'
 import pagamento from "../media/formas-pagamento.png";
@@ -11,6 +11,18 @@ export default function Products(){
 
     const [showMenu, setShowMenu] = useState(false);
     const params = useParams();
+
+    function atualizarPagina() {
+        const reloadCount = sessionStorage.getItem('reloadCount');
+        if(reloadCount < 2) {
+          sessionStorage.setItem('reloadCount', String(reloadCount + 1));
+          window.location.reload();
+        } else {
+          sessionStorage.removeItem('reloadCount');
+        }
+    }
+
+    atualizarPagina()
 
     return (
         <FullPage>

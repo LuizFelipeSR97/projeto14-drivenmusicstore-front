@@ -4,6 +4,7 @@ import pagamento from "../media/formas-pagamento.png";
 import {useState} from 'react'
 import { Link, useParams } from "react-router-dom";
 import MenuRender from "./dynamic components/menuRender";
+
 import ListaDeProdutos from "./dynamic components/productsMainPage";
 
 export default function Main () {
