@@ -6,6 +6,7 @@ import UserContext from '../contexts/UserContext';
 import SignIn from './signin';
 import SignUp from './signup';
 import Main from './main';
+import Products from "./products";
 
 export default function Site () {
 
@@ -26,6 +27,7 @@ export default function Site () {
                     <Route path="/" element={<Main/>} />
                     <Route path="/signin" element={<SignIn/>} />
                     <Route path="/signup" element={<SignUp/>} />
+                    <Route path="/products/:type" element={<Products/>} />
                 </Routes>
             </BrowserRouter>
         </UserContext.Provider>

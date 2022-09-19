@@ -20,7 +20,7 @@ export default function SignUp () {
 
         const user = {name: e.target.name.value, email: e.target.email.value, password: e.target.password.value};
 
-        axios.post("http://localhost:5000/users", user).then(() => {
+        axios.post("https://back-projeto-drivenmusicstore.herokuapp.com/users", user).then(() => {
             navigate("/signin");
             }).catch(err => {
                 if (err.response.status===409){

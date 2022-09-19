@@ -11,15 +11,12 @@ export default function MenuRender ({showMenu, setShowMenu}) {
         const token = localStorage.getItem("token")
         const config = {headers: {"Authorization": `Bearer ${token}`}}
 
-        await axios.delete("http://localhost:5000/sessions", config).then(answer => {
+        await axios.delete("https://back-projeto-drivenmusicstore.herokuapp.com/sessions", config).then(answer => {
 
         localStorage.setItem("token","");
         localStorage.setItem("userId","");
         localStorage.setItem("userName","");
         localStorage.setItem("userEmail","");
-
-        navigate("/");
-
         window.location.reload(false);
 
         }).catch(err => {
