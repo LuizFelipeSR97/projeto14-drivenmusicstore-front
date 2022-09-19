@@ -36,7 +36,7 @@ export default function MenuRender ({showMenu, setShowMenu}) {
     }
 
     return (
-        (localStorage.getItem("token")==="")?
+        (localStorage.getItem("token")==="" || localStorage.getItem("token")===null)?
         <Menu>
             <ion-icon name="menu-outline" onClick={()=>setShowMenu(!showMenu)}/>
             <MenuBar>
