@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function ListaDeProdutos(){
+export default function ListaDeProdutos({params}){
+
+    const [lista, setLista] = useState([]);
+    //const type = "disc"
+    let type;
 
     useEffect(() => {
 
