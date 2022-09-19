@@ -15,7 +15,7 @@ export default function SignIn () {
 
         const inputUser = {email: e.target.email.value, password: e.target.password.value};
         
-        axios.post("http://localhost:5000/sessions", inputUser).then(answer => {
+        axios.post("https://back-projeto-drivenmusicstore.herokuapp.com/sessions", inputUser).then(answer => {
 
         localStorage.setItem("token", answer.data.token)
         localStorage.setItem("userId", answer.data.id)
