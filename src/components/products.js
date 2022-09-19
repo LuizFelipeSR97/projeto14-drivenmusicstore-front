@@ -9,7 +9,7 @@ import ListaDeProdutosCompleta from "./dynamic components/productsPage"
 
 export default function Products(){
 
-    const [showMenu, setShowMenu] = useState(false)
+    const [showMenu, setShowMenu] = useState(false);
     const params = useParams();
 
     return (

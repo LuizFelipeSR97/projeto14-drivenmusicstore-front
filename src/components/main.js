@@ -2,13 +2,14 @@ import styled from "styled-components";
 import logo from "../media/logo-driven-music-store-transparent.png";
 import pagamento from "../media/formas-pagamento.png";
 import {useState} from 'react'
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import MenuRender from "./dynamic components/menuRender";
 import ListaDeProdutos from "./dynamic components/productsMainPage";
 
 export default function Main () {
 
     const [showMenu, setShowMenu] = useState(false)
+    const params = useParams();
 
     return (
     <FullPage>
@@ -35,7 +36,7 @@ export default function Main () {
                 <div className="divisao" />
                 <Link to="/products/aulas"><p>AULAS</p></Link>                
             </Categorias>
-            <ListaDeProdutos/>
+            <ListaDeProdutos params={params}/>
         </Conteudo>
         <Footer>
             <Secao>
