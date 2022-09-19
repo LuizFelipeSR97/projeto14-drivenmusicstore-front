@@ -1,74 +1,77 @@
-import styled from "styled-components";
-import logo from "../media/logo-driven-music-store-transparent.png";
-import pagamento from "../media/formas-pagamento.png";
+import styled from "styled-components"
+import MenuRender from "./dynamic components/menuRender"
 import {useState} from 'react'
-import { Link } from "react-router-dom";
-import MenuRender from "./dynamic components/menuRender";
-import ListaDeProdutos from "./dynamic components/productsMainPage";
+import {Link, useParams} from "react-router-dom"
+import logoAlternativo from '../media/logo-driven-music-store-transparent-alternative.png'
+import pagamento from "../media/formas-pagamento.png";
 
-export default function Main () {
+import ListaDeProdutosCompleta from "./dynamic components/productsPage"
+
+export default function Products(){
 
     const [showMenu, setShowMenu] = useState(false)
+    const params = useParams();
 
     return (
-    <FullPage>
-        <Header>
-            <Left>
-                <MenuRender showMenu={showMenu} setShowMenu={setShowMenu}/>
-            </Left>
-            <Right>
-                <input placeholder="Pesquisar" />
-                <div className="pesquisar">
-                    <ion-icon name="search-outline"/>
-                </div>
-                <ion-icon name="cart-outline"/>
-            </Right>
-        </Header>
-        <Conteudo>
-        <img src={logo} alt=""/>
-            <Categorias>
-                <Link to="/products/instrumentos"><p>INSTRUMENTOS</p></Link>                
-                <div className="divisao" />
-                <Link to="/products/acessorios"><p>ACESSÓRIOS</p></Link>                
-                <div className="divisao" />
-                <Link to="/products/discos"><p>DISCOS</p></Link>                
-                <div className="divisao" />
-                <Link to="/products/aulas"><p>AULAS</p></Link>                
-            </Categorias>
-            <ListaDeProdutos/>
-        </Conteudo>
-        <Footer>
-            <Secao>
-                <h1>CONTATOS</h1>
-                <h2>TELEFONE:</h2>
-                <h3>(99) 3003-4004 / (99) 3003-5005</h3>
-                <h2>WHATSAPP:</h2>
-                <h3>(99) 99999-9999</h3>
-                <h2>E-MAIL:</h2>
-                <h3>vendas@drivenmusicstore.com</h3>
-            </Secao>
-            <Separador />
-            <Secao>
-                <h1>LOJA</h1>
-                <h4>MINHA CONTA</h4>
-                <h4>MEUS PEDIDOS</h4>
-                <h4>SOBRE A LOJA</h4>
-                <h4>TROCAS E DEVOLUÇÕES</h4>
-            </Secao>
-            <Separador />
-            <Secao>
-                <h1>FORMAS DE PAGAMENTO</h1>
-                <img src={pagamento} alt=""/>
-            </Secao>
-        </Footer>
-    </FullPage>   
+        <FullPage>
+            <Header>
+                <Left>
+                    <MenuRender showMenu={showMenu} setShowMenu={setShowMenu}/>
+                </Left>
+                <Right>
+                    <Link to="/"><img src={logoAlternativo}/></Link>
+                    <input placeholder="Pesquisar" />
+                    <div className="pesquisar">
+                        <ion-icon name="search-outline"/>
+                    </div>
+                    <ion-icon name="cart-outline"/>
+                </Right>
+            </Header>
+            <Conteudo>
+                <Categorias>
+                    <Link to="/products/instrumentos"><p>INSTRUMENTOS</p></Link>
+                    <div className="divisao" />
+                    <Link to="/products/acessorios"><p>ACESSÓRIOS</p></Link>
+                    <div className="divisao" />
+                    <Link to="/products/discos"><p>DISCOS</p></Link>
+                    <div className="divisao" />
+                    <Link to="/products/aulas"><p>AULAS</p></Link>
+                </Categorias>
+                <ListaDeProdutosCompleta params={params}/>
+            </Conteudo>
+            <Footer>
+                <Secao>
+                    <h1>CONTATOS</h1>
+                    <h2>TELEFONE:</h2>
+                    <h3>(99) 3003-4004 / (99) 3003-5005</h3>
+                    <h2>WHATSAPP:</h2>
+                    <h3>(99) 99999-9999</h3>
+                    <h2>E-MAIL:</h2>
+                    <h3>vendas@drivenmusicstore.com</h3>
+                </Secao>
+                <Separador />
+                <Secao>
+                    <h1>LOJA</h1>
+                    <h4>MINHA CONTA</h4>
+                    <h4>MEUS PEDIDOS</h4>
+                    <h4>SOBRE A LOJA</h4>
+                    <h4>TROCAS E DEVOLUÇÕES</h4>
+                </Secao>
+                <Separador />
+                <Secao>
+                    <h1>FORMAS DE PAGAMENTO</h1>
+                    <img src={pagamento} alt=""/>
+                </Secao>
+            </Footer>
+        </FullPage>
     )
+
 }
 
 const FullPage = styled.div`
-    height: 100vh;
-    width: 100vw;
-    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: #FFFFFF;
 
     a:-webkit-any-link {
         text-decoration: none;
@@ -164,31 +167,33 @@ const Right = styled.div`
         height: 20px;
         margin: 0;
     }
+
+    img{
+        height: 30px;
+        width: 90px;
+        margin-right: 70px;
+        margin-top: 5px;
+    }
 `
 
 const Conteudo = styled.div`
     padding-top: 30px;
     width: 100%;
-    height: 700px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #FFFFFF;
-
-    img{
-        height: 200px;
-        width: 500px;
-        margin: 80px 0;
-    }
+    margin-top: 40px;
 `
 
 const Categorias = styled.div`
     background-color: #d61b69;
     margin-top: 10px;
     color: #FFFFFF;
-    font-size: 25px;
+    font-size: 20px;
     width: 100%;
-    height: 80px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -201,6 +206,12 @@ const Categorias = styled.div`
     }
 
     p{
+        cursor: pointer;
+    }
+
+    a:-webkit-any-link {
+        text-decoration: none;
+        color: #FFFFFF;
         cursor: pointer;
     }
 `
@@ -216,9 +227,7 @@ const Footer = styled.div`
     box-sizing: border-box;
     padding-right: 20px;
     padding-left: 20px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    margin-top: 30px;
 `
 
 const Secao = styled.div`

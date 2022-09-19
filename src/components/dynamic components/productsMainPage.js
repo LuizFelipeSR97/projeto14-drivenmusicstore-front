@@ -1,34 +1,16 @@
 import styled from "styled-components";
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const exListaDeProdutos = [{type: "instruments", name: "Violao"},{type: "instruments", name: "Guitarra"},{type: "instruments", name: "Bateria"},{type: "instruments", name: "Saxofone"},{type: "instruments", name: "Gaita"},{type: "instruments", name: "Pandeiro"},{type: "instruments", name: "Cavaco"},{type: "instruments", name: "Baixo"},{type: "instruments", name: "Banjo"},{type: "instruments", name: "Flauta"}]
 
 export default function ListaDeProdutos(){
 
-    const [showProducts, setShowProducts] = useState([])
-    const [exListaDeProdutos2, setExListaDeProdutos2] = useState([...exListaDeProdutos])
-
     const array = [...exListaDeProdutos]
-
-        if (array.lenght<3){
-            alert ("Adicione mais produtos na lista.")
-            return
-        }
-
-            let i,j,k;
-
-            i=Math.trunc((Math.random() * (10 - 1) + 1));
-            j=i;
-            k=i;
-
-        while (j===i){
-            j=Math.trunc((Math.random() * (10 - 1) + 1));
-        }
-
-        while (k===i || k===j){
-            k=Math.trunc((Math.random() * (10 - 1) + 1));
-        }
+    
+    const i=1;
+    const j=2;
+    const k=3;  
 
     return (
         <Lista>
@@ -41,7 +23,7 @@ export default function ListaDeProdutos(){
             <Produto>
                 {array[k].name}
             </Produto>
-            <Link to="/products"><Botao>
+            <Link to="/products?type=discos"><Botao>
                 Ver mais
             </Botao></Link>
         </Lista>

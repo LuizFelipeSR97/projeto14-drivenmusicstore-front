@@ -17,9 +17,6 @@ export default function MenuRender ({showMenu, setShowMenu}) {
         localStorage.setItem("userId","");
         localStorage.setItem("userName","");
         localStorage.setItem("userEmail","");
-
-        navigate("/");
-
         window.location.reload(false);
 
         }).catch(err => {
